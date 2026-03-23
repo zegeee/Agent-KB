@@ -120,7 +120,9 @@ SET = "validation"
 
 custom_role_conversions = {"tool-call": "assistant", "tool-response": "user"}
 
-eval_ds = datasets.load_dataset("gaia-benchmark/GAIA", "2023_all", trust_remote_code=True)[SET]
+# eval_ds = datasets.load_dataset("gaia-benchmark/GAIA", "2023_all", trust_remote_code=True)[SET]
+eval_ds = datasets.load_dataset("/home/yyx/gzj/_models/datasets/gaia", "2023_all", trust_remote_code=True)[SET]
+eval_ds = eval_ds.select(range(2))
 eval_ds = eval_ds.rename_columns({"Question": "question", "Final answer": "true_answer", "Level": "task"})
 
 def preprocess_file_paths(row):
